@@ -1,6 +1,9 @@
 #include "Rocket.hpp"
 #include "consts.hpp"
 
+const std::string Rocket::IMAGE_PATH = "images/Rocket.png";
+
+
 Rocket::Rocket() : speedX(10.f), speedY(-30.f), time(std::chrono::steady_clock::now()) {
 
     texture.loadFromFile(IMAGE_PATH);
@@ -19,13 +22,51 @@ Rocket::Rocket() : speedX(10.f), speedY(-30.f), time(std::chrono::steady_clock::
     sprite.setScale(sf::Vector2f(3.f, 3.f));
 }
 
+std::map<char, bool> Rocket::getKeysState() {
+
+    std::map<char, bool> ans;
+
+    for (const auto& [c, keys] : KEYMAP) {
+
+        if(std::any_of(keys.begin(), keys.end(), [](const auto& key) { return sf::Keyboard::isKeyPressed(key); })) {
+            
+            ans[c] = true;
+        } else {
+            ans[c] = false;
+        }
+    }
+
+    return ans;
+}
+
 void Rocket::updatePosition() {
 
-    using namespace std::chrono;
-
-    auto new_time = steady_clock::now();
-    float dt = duration<float>(new_time - time).count();
+    auto new_time = std::chrono::steady_clock::now();
+    float dt = std::chrono::duration<float>(new_time - time).count();
     time = new_time;
+
+    auto keysState = getKeysState();
+
+    if (keysState['L'] && !keysState['R']) {
+        
+        // accelerate left
+        speedX -= a * dt;
+
+    } else if (!keysState['L'] && keysState['R']) {
+        
+        // accelerate right
+        speedX += a * dt;
+    }
+    if (keysState['U'] && !keysState['D']) {
+
+        // accelerate up
+        speedY -= a * dt;
+
+    } else if (!keysState['U'] && keysState['D']) {
+
+        // accelerate down
+        speedY += a * dt;
+    }
 
     x += speedX * dt;
     y += speedY * dt;
