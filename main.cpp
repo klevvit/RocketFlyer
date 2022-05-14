@@ -22,6 +22,8 @@ int main(int argc, char **argv) {
             }
         }
 
+        rocket.updatePosition();
+
         window.clear(sf::Color(50, 50, 64));
 
         rocket.draw(window);
