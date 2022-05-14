@@ -1,7 +1,7 @@
 namespace consts {
 
     enum {
-        WINDOW_WIDTH = 450,
+        WINDOW_WIDTH = 460,
         WINDOW_HEIGHT = 800,
     };
 }

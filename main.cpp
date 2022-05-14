@@ -4,12 +4,14 @@
 #include <SFML/Graphics.hpp>
 
 #include "Rocket.hpp"
+#include "Earth.hpp"
 #include "consts.hpp"
 
 int main(int argc, char **argv) {
     sf::RenderWindow window(sf::VideoMode(consts::WINDOW_WIDTH, consts::WINDOW_HEIGHT), "Rocket Flyer", sf::Style::Close);
 
     Rocket rocket;
+    Earth earth;
 
     auto start = std::chrono::steady_clock::now();
 
@@ -26,6 +28,7 @@ int main(int argc, char **argv) {
 
         window.clear(sf::Color(50, 50, 64));
 
+        earth.draw(window);
         rocket.draw(window);
 
         window.display();
