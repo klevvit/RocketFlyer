@@ -3,8 +3,8 @@
 
 const std::string Earth::IMAGE_PATH = "images/Earth.png";
 
-
-Earth::Earth() {
+Earth::Earth()
+{
 
     texture.loadFromFile(IMAGE_PATH);
     sprite.setTexture(texture);
@@ -17,7 +17,7 @@ Earth::Earth() {
     sprite.setScale(sf::Vector2f(4.f, 4.f));
 }
 
-void Earth::draw(sf::RenderWindow& window) {
-    
-    window.draw(sprite);
+const sf::Sprite &Earth::getSprite()
+{
+    return sprite;
 }

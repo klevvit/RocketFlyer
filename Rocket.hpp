@@ -9,6 +9,15 @@
 
 class Rocket {
 
+public:
+    Rocket();
+
+    void updatePosition();
+
+    const sf::Sprite &getSprite();
+    const sf::View &getView();
+
+private:
     static const std::string IMAGE_PATH;
 
     sf::Texture texture;
@@ -18,7 +27,10 @@ class Rocket {
     float y;
     float speedX;
     float speedY;
-    constexpr static float a = 100.f;
+    const float a;  // acceleration
+    
+    sf::View view;
+    const float yBound;
 
     std::chrono::steady_clock::time_point time;
 
@@ -31,13 +43,6 @@ class Rocket {
 
     const std::map<char, keyset> KEYMAP {{'L', KEYS_LEFT}, {'R', KEYS_RIGHT}, {'U', KEYS_UP}, {'D', KEYS_DOWN}};
 
-public:
-
-    Rocket();
-
     std::map<char, bool> getKeysState();
-    void updatePosition();
-
-    void draw(sf::RenderWindow &);
 
 };

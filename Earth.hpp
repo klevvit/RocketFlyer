@@ -4,8 +4,8 @@
 
 #include <SFML/Graphics.hpp>
 
-
-class Earth {
+class Earth
+{
 
     static const std::string IMAGE_PATH;
 
@@ -15,9 +15,7 @@ class Earth {
     float y;
 
 public:
-
     Earth();
 
-    void draw(sf::RenderWindow &);
-
+    const sf::Sprite &getSprite();
 };

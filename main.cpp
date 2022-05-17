@@ -11,6 +11,7 @@ int main(int argc, char **argv) {
     sf::RenderWindow window(sf::VideoMode(consts::WINDOW_WIDTH, consts::WINDOW_HEIGHT), "Rocket Flyer", sf::Style::Close);
 
     Rocket rocket;
+    window.setView(rocket.getView());
     Earth earth;
 
     auto start = std::chrono::steady_clock::now();
@@ -25,11 +26,12 @@ int main(int argc, char **argv) {
         }
 
         rocket.updatePosition();
+        window.setView(rocket.getView());
 
         window.clear(sf::Color(50, 50, 64));
 
-        earth.draw(window);
-        rocket.draw(window);
+        window.draw(earth.getSprite());
+        window.draw(rocket.getSprite());
 
         window.display();
         
