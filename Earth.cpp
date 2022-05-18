@@ -16,8 +16,3 @@ Earth::Earth()
     sprite.setPosition(0, y);
     sprite.setScale(sf::Vector2f(4.f, 4.f));
 }
-
-const sf::Sprite &Earth::getSprite()
-{
-    return sprite;
-}

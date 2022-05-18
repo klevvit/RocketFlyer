@@ -80,11 +80,6 @@ void Rocket::updatePosition()
     sprite.setPosition(x, y);
 }
 
-const sf::Sprite &Rocket::getSprite()
-{
-    return sprite;
-}
-
 const sf::View &Rocket::getView()
 {
     return view;

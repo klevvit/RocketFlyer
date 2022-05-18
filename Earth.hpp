@@ -1,21 +1,16 @@
 #pragma once
 
-#include <string>
+#include "Object.hpp"
 
-#include <SFML/Graphics.hpp>
-
-class Earth
+class Earth : public Object
 {
-
-    static const std::string IMAGE_PATH;
-
-    sf::Texture texture;
-    sf::Sprite sprite;
-
-    float y;
 
 public:
     Earth();
 
-    const sf::Sprite &getSprite();
+private:
+    static const std::string IMAGE_PATH;
+
+    float y;
+
 };
