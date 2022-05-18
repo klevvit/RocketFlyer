@@ -12,5 +12,4 @@ private:
     static const std::string IMAGE_PATH;
 
     float y;
-
 };

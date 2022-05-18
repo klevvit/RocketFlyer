@@ -3,11 +3,8 @@
 
 const std::string Earth::IMAGE_PATH = "images/Earth.png";
 
-Earth::Earth()
+Earth::Earth() : Object(IMAGE_PATH)
 {
-
-    texture.loadFromFile(IMAGE_PATH);
-    sprite.setTexture(texture);
 
     y = static_cast<float>(consts::WINDOW_HEIGHT);
 

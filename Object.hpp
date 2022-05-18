@@ -11,7 +11,7 @@ public:
     const sf::Sprite &getSprite();
 
 protected:
-    Object();
+    Object(const std::string &imgPath);
 
     sf::Texture texture;
     sf::Sprite sprite;

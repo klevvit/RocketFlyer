@@ -3,7 +3,8 @@
 
 const std::string Rocket::IMAGE_PATH = "images/Rocket.png";
 
-Rocket::Rocket() : x(static_cast<float>(consts::WINDOW_WIDTH) / 2),
+Rocket::Rocket() : Object(IMAGE_PATH),
+                   x(static_cast<float>(consts::WINDOW_WIDTH) / 2),
                    y(static_cast<float>(consts::WINDOW_HEIGHT) - 100.f),
                    speedX(0.f),
                    speedY(0.f),
@@ -11,8 +12,6 @@ Rocket::Rocket() : x(static_cast<float>(consts::WINDOW_WIDTH) / 2),
                    yBound(y - 120.f),
                    time(std::chrono::steady_clock::now())
 {
-    texture.loadFromFile(IMAGE_PATH);
-    sprite.setTexture(texture);
 
     sf::Vector2f rocketCenter(
         static_cast<float>(texture.getSize().x) / 2,
