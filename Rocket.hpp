@@ -23,7 +23,9 @@ private:
     float y;
     float speedX;
     float speedY;
-    const float a; // acceleration
+    float angle;
+    const float a;  // acceleration
+    const float omega;  // angular speed
 
     sf::View view;
     const float yBound;

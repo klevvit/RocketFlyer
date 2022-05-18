@@ -1,3 +1,5 @@
+#include <cmath>
+
 #include "Rocket.hpp"
 #include "consts.hpp"
 
@@ -8,7 +10,9 @@ Rocket::Rocket() : Object(IMAGE_PATH),
                    y(static_cast<float>(consts::WINDOW_HEIGHT) - 100.f),
                    speedX(0.f),
                    speedY(0.f),
+                   angle(0.f),
                    a(100.f),
+                   omega(60.f),
                    yBound(y - 120.f),
                    time(std::chrono::steady_clock::now())
 {
@@ -37,26 +41,21 @@ void Rocket::updatePosition()
     if (keysState['L'] && !keysState['R'])
     {
 
-        // accelerate left
-        speedX -= a * dt;
+        // rotate left
+        angle -= omega * dt;
     }
     else if (!keysState['L'] && keysState['R'])
     {
 
-        // accelerate right
-        speedX += a * dt;
+        // rotate right
+        angle += omega * dt;
     }
-    if (keysState['U'] && !keysState['D'])
+    if (keysState['U'])
     {
 
-        // accelerate up
-        speedY -= a * dt;
-    }
-    else if (!keysState['U'] && keysState['D'])
-    {
-
-        // accelerate down
-        speedY += a * dt;
+        // accelerate
+        speedY -= a * cos(angle * M_PI / 180.0) * dt;
+        speedX += a * sin(angle * M_PI / 180.0) * dt;
     }
 
     float deltaX = speedX * dt;
@@ -77,6 +76,7 @@ void Rocket::updatePosition()
     }
 
     sprite.setPosition(x, y);
+    sprite.setRotation(angle);
 }
 
 const sf::View &Rocket::getView()
