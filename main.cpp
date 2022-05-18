@@ -5,14 +5,16 @@
 
 #include "Rocket.hpp"
 #include "Earth.hpp"
+#include "Sky.hpp"
 #include "consts.hpp"
 
 int main(int argc, char **argv) {
     sf::RenderWindow window(sf::VideoMode(consts::WINDOW_WIDTH, consts::WINDOW_HEIGHT), "Rocket Flyer", sf::Style::Close);
 
+    Sky sky;
+    Earth earth;
     Rocket rocket;
     window.setView(rocket.getView());
-    Earth earth;
 
     auto start = std::chrono::steady_clock::now();
 
@@ -30,6 +32,7 @@ int main(int argc, char **argv) {
 
         window.clear(sf::Color(50, 50, 64));
 
+        window.draw(sky.getSprite());
         window.draw(earth.getSprite());
         window.draw(rocket.getSprite());
 
