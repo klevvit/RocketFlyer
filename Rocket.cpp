@@ -1,4 +1,5 @@
 #include <cmath>
+#include <numbers>
 
 #include "Rocket.hpp"
 #include "consts.hpp"
@@ -13,6 +14,7 @@ Rocket::Rocket() : Object(IMAGE_PATH),
                    angle(0.f),
                    a(100.f),
                    omega(60.f),
+                   g(80.f),
                    yBound(y - 120.f),
                    time(std::chrono::steady_clock::now())
 {
@@ -31,7 +33,6 @@ Rocket::Rocket() : Object(IMAGE_PATH),
 
 void Rocket::updatePosition()
 {
-
     auto new_time = std::chrono::steady_clock::now();
     float dt = std::chrono::duration<float>(new_time - time).count();
     time = new_time;
@@ -54,9 +55,12 @@ void Rocket::updatePosition()
     {
 
         // accelerate
-        speedY -= a * cos(angle * M_PI / 180.0) * dt;
-        speedX += a * sin(angle * M_PI / 180.0) * dt;
+        const float PI = std::numbers::pi_v<float>;
+        speedY -= a * cos(angle * PI / 180.f) * dt;
+        speedX += a * sin(angle * PI / 180.f) * dt;
     }
+
+    speedY += g * dt;
 
     float deltaX = speedX * dt;
     float deltaY = speedY * dt;
