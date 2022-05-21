@@ -14,7 +14,7 @@ Rocket::Rocket() : Object(IMAGE_PATH),
                    angle(0.f),
                    a(100.f),
                    omega(60.f),
-                   g(80.f),
+                   g(0.f),
                    yBound(y - 120.f),
                    time(std::chrono::steady_clock::now())
 {

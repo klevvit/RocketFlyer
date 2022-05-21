@@ -6,6 +6,7 @@
 #include "Rocket.hpp"
 #include "Earth.hpp"
 #include "Sky.hpp"
+#include "Asteroid.hpp"
 #include "consts.hpp"
 
 int main(int argc, char **argv) {
@@ -15,6 +16,7 @@ int main(int argc, char **argv) {
     Earth earth;
     Rocket rocket;
     window.setView(rocket.getView());
+    Asteroid asteroid;
 
     auto start = std::chrono::steady_clock::now();
 
@@ -35,6 +37,7 @@ int main(int argc, char **argv) {
         window.draw(sky.getSprite());
         window.draw(earth.getSprite());
         window.draw(rocket.getSprite());
+        window.draw(asteroid.getSprite());
 
         window.display();
         
